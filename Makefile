@@ -18,6 +18,7 @@ BINDIR ?= $(PREFIX)/bin
 MANDIR ?= $(PREFIX)/share/man
 
 PKG_CONFIG ?= pkg-config
+LLVM_CONFIG ?= llvm-config
 
 CHECKER_FLAGS ?= -Wno-vla
 
@@ -193,7 +194,6 @@ $(warning Your system does not have gtk3/gtk2, disabling test-inspect)
 endif
 
 # Can we use LLVM (needed for ... sparse-llvm)?
-LLVM_CONFIG:=llvm-config
 HAVE_LLVM:=$(shell $(LLVM_CONFIG) --version >/dev/null 2>&1 && echo 'yes')
 ifeq ($(HAVE_LLVM),yes)
 arch := $(shell uname -m)
