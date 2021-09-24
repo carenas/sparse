@@ -298,12 +298,16 @@ install: install-bin install-man
 install-bin: $(INST_PROGRAMS:%=$(bindir)/%)
 install-man: $(INST_MAN1:%=$(man1dir)/%)
 
-$(bindir)/%: %
+$(bindir):
+	@mkdir -p $(bindir)
+$(bindir)/%: % | $(bindir)
 	@echo "  INSTALL $@"
-	$(Q)install -D        $< $@ || exit 1;
-$(man1dir)/%: %
+	$(Q)install        $< $@ || exit 1;
+$(man1dir):
+	@mkdir -p $(man1dir)
+$(man1dir)/%: % | $(man1dir)
 	@echo "  INSTALL $@"
-	$(Q)install -D -m 644 $< $@ || exit 1;
+	$(Q)install -m 644 $< $@ || exit 1;
 
 .PHONY: FORCE
 
