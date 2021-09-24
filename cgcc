@@ -107,6 +107,8 @@ if ($do_check) {
     chomp($multiarch_dir);  # possibly remove '\n' from compiler
     $check .= " -multiarch-dir " . $multiarch_dir if $multiarch_dir;
 
+    $check .= &add_includes;
+
     print "$check\n" if $verbose;
     if ($do_compile) {
 	system ($check) == 0 or exit 1;
@@ -354,6 +356,20 @@ sub add_specs {
     } else {
 	die "$0: invalid specs: $spec\n";
     }
+}
+
+# -----------------------------------------------------------------------------
+
+sub add_includes {
+    my $ret = "";
+    my $list = qx($ccom -E -Wp,-v - </dev/null 2>&1);
+    foreach (split(/\n/, $list)) {
+	my $dir = $1 if m|^ (/[^ ]+)$|;
+	if (defined $dir) {
+	    $ret .= " -isystem $dir" unless $dir =~ $gcc_base_dir;
+	}
+    }
+    return $ret;
 }
 
 # -----------------------------------------------------------------------------
