@@ -305,6 +305,8 @@ sub add_specs {
 
 	if ($gccmachine =~ '^aarch64-') {
 	    return &add_specs ('aarch64');
+	} elsif ($gccmachine =~ '^arm64-apple-darwin') {
+	    return &add_specs ('aarch64');
 	} elsif ($gccmachine =~ '^arm-.*eabihf$') {
 	    return &add_specs ('arm+hf');
 	} elsif ($gccmachine =~ '^arm-') {
