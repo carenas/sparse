@@ -8,7 +8,7 @@
  *  - zeroed anonymous mmap
  *	Missing in MinGW
  *  - "string to long double" (C99 strtold())
- *	Missing in Solaris and MinGW
+ *	Missing in MinGW
  */
 
 /*
