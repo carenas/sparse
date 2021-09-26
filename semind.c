@@ -1150,7 +1150,7 @@ int main(int argc, char **argv)
 	};
 	const struct command *cmd;
 
-	if (!(progname = rindex(argv[0], '/')))
+	if (!(progname = strrchr(argv[0], '/')))
 		progname = argv[0];
 	else
 		progname++;
