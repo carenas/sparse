@@ -155,9 +155,8 @@ endif
 
 HAVE_SQLITE := $(shell $(PKG_CONFIG) --exists sqlite3 2>/dev/null && echo 'yes')
 ifeq ($(HAVE_SQLITE),yes)
-SQLITE_VERSION:=$(shell $(PKG_CONFIG) --modversion sqlite3)
-SQLITE_VNUMBER:=$(shell printf '%d%02d%02d' $(subst ., ,$(SQLITE_VERSION)))
-ifeq ($(shell expr "$(SQLITE_VNUMBER)" '>=' 32400),1)
+MODERN_SQLITE_VERSION:=$(shell $(PKG_CONFIG) --atleast-version=3.24.0 sqlite3 && echo 'yes')
+ifeq ($(MODERN_SQLITE_VERSION),yes)
 PROGRAMS += semind
 INST_PROGRAMS += semind
 INST_MAN1 += semind.1
