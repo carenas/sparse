@@ -4,4 +4,3 @@
 #include "allocate.h"
 
 #include "compat/mmap-blob.c"
-#include "compat/strtold.c"

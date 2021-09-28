@@ -7,8 +7,6 @@
  *
  *  - zeroed anonymous mmap
  *	Missing in MinGW
- *  - "string to long double" (C99 strtold())
- *	Missing in MinGW
  */
 
 /*
@@ -21,6 +19,5 @@
 
 void *blob_alloc(unsigned long size);
 void blob_free(void *addr, unsigned long size);
-long double string_to_ld(const char *nptr, char **endptr);
 
 #endif

@@ -49,8 +49,3 @@ void blob_free(void *addr, unsigned long size)
 	size = (size + 4095) & ~4095;	
 	munmap(addr, size);	
 }	
-	
-long double string_to_ld(const char *nptr, char **endptr) 	
-{	
-	return strtod(nptr, endptr);	
-}

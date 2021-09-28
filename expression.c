@@ -358,7 +358,7 @@ Eoverflow:
 			show_token(token));
 	return;
 Float:
-	expr->fvalue = string_to_ld(str, &end);
+	expr->fvalue = strtold(str, &end);
 	if (str == end)
 		goto Enoint;
 
